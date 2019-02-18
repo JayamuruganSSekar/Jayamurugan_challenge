@@ -8,10 +8,12 @@
       sh "mvn clean package"
 }
    }
-   stage('Email Notification'){
-      mail bcc: '', body: '''Hi Welcome to jenkins email alerts
-      Thanks
-      Hari''', cc: '', from: '', replyTo: '', subject: 'Jenkins Job', to: 'hari.kammana@gmail.com'
+   stage('Deploy to tomcat using Ansible'){
+     sh "cd"
+     sh "git clone https://github.com/JayamuruganSSekar/Jayamurugan_challenge"
+     sh "cd Jayamurugan_challenge/playbooks"
+     sh "ansible-playbook tomcat_deployment.yml"
+     
    }
 }
 
