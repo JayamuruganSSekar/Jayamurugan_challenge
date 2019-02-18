@@ -3,7 +3,10 @@
      git 'https://github.com/JayamuruganSSekar/Jayamurugan_challenge'
    }
    stage('Compile-Package'){  
-      sh "mvn package"
+      def mvn_version = 'M3'
+      withEnv( ["PATH+MAVEN=${tool mvn_version}/bin"] ) {
+      sh "mvn clean package"
+}
    }
    stage('Email Notification'){
       mail bcc: '', body: '''Hi Welcome to jenkins email alerts
