@@ -1,0 +1,8 @@
+---
+ - hosts: all
+   become: true
+   tasks:
+      - name: "Copy the WAR file that built by Jenkins to Tomcat"
+        copy: src=/var/lib/jenkins/workspace/jaypipeline/target/*.war dest=/opt/apache-tomcat-8.5.38/webapps mode=0744
+      - name: "Restart the tomcat services"
+        shell: /opt/apache-tomcat-8.5.38/bin/startup.sh
